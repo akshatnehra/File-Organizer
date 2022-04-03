@@ -1,0 +1,23 @@
+{
+  "name": "file-organizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshatnehra/File-Organizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "fog": "main.js"
+  },
+  "bugs": {
+    "url": "https://github.com/akshatnehra/File-Organizer/issues"
+  },
+  "homepage": "https://github.com/akshatnehra/File-Organizer#readme"
+}

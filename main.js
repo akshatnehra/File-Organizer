@@ -134,7 +134,9 @@ function organize(directoryPath){
 
 function tree(directoryPath){
     if(directoryPath == undefined){
-        console.log("Please enter the path!");
+
+        // In case no dir path provided (default --> Current Working Directory)
+        treeHelper(process.cwd(), " ");
         return;
     }
     else{
