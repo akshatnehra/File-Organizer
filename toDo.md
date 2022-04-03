@@ -1,4 +1,4 @@
 [*] Help
 [*] Organize
 [*] Tree
-[] Global
+[*] Global
