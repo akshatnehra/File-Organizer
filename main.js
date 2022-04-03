@@ -161,7 +161,7 @@ function treeHelper(directoryPath, space){
         // console.log(space + "└──" + filesInsideDirectory);
 
         for(let i=0; i<filesInsideDirectory.length; i++){
-            let childPath = path.join(directoryPath + filesInsideDirectory[i]);
+            let childPath = path.join(directoryPath , filesInsideDirectory[i]);
             treeHelper(childPath, space + "\t");
         }
     }
