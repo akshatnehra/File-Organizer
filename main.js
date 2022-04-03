@@ -1,3 +1,14 @@
+let types = {
+    media: ["mp4", "mkv", "mp3","mov"],
+    archives: ['zip', '7z', 'rar', 'tar', 'gz', 'ar', 'iso', "xz"],
+    documents: ['docx', 'doc', 'pdf', 'xlsx', 'xls', 'odt', 'ods', 'odp', 'odg', 'odf', 'txt', 'ps', 'tex',"csv",'json'],
+    app: ['exe', 'dmg', 'pkg', "deb","apk"],
+    images: ['png','jpg','jpeg'],
+    torrent: ['torrent']
+}
+
+
+
 // Taking input from the user
 
 let inputArr = process.argv.slice(2);
@@ -76,9 +87,43 @@ function organize(directoryPath){
             // Display if it is a files
             let isFile = fs.lstatSync(fileAddress).isFile();
             if(isFile){
-                console.log(fileNames[i]);
+                let fileCategory = getFileCategory(fileNames[i]);
+                sendFiles(fileAddress, destinationPath, fileCategory);
             }
         }
+    }
+
+    function getFileCategory(fileName){
+        // .zip
+        let category = path.extname(fileName);
+
+        // zip (without .)
+        let extension = category.slice(1);
+        
+        for(let type in types){
+            let typeArr = types[type];
+
+            for(let i=0; i<typeArr.length; i++){
+                if(extension == typeArr[i]){
+                    return type;
+                }
+            }
+        }
+
+        return 'others';
+    }
+
+    function sendFiles(sourceFilePath, destinationPath, fileCategory){
+        let concatenatedPath = path.join(destinationPath, fileCategory);
+
+        if(!fs.existsSync(concatenatedPath)){
+            fs.mkdirSync(concatenatedPath);
+        }
+
+        let fileName = path.basename(sourceFilePath);
+        let destinationFilePath = path.join(concatenatedPath, fileName);
+
+        fs.copyFileSync(sourceFilePath, destinationFilePath);
     }
     
     
